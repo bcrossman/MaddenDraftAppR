@@ -10,7 +10,8 @@
 mod_draft_board_ui <- function(id){
   ns <- NS(id)
   tagList(
- 
+    h2("a table"),
+    DT::DTOutput(ns("drafttable"))
   )
 }
     
@@ -19,7 +20,9 @@ mod_draft_board_ui <- function(id){
 #' @noRd 
 mod_draft_board_server <- function(input, output, session){
   ns <- session$ns
- 
+  output$drafttable <- DT::renderDataTable({
+    DT::datatable(draft_data)
+  })
 }
     
 ## To be copied in the UI
