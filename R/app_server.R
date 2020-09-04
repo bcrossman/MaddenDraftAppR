@@ -6,5 +6,5 @@
 #' @noRd
 app_server <- function( input, output, session ) {
   # List the first level callModules here
-
+  callModule(mod_draft_board_server, "draft_board_ui_1")
 }

@@ -10,7 +10,8 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here 
     fluidPage(
-      h1("MaddenDraftAppR")
+      h1("MaddenDraftAppR"),
+      mod_draft_board_ui("draft_board_ui_1")
     )
   )
 }
