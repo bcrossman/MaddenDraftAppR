@@ -224,9 +224,9 @@ mod_draft_board_server <- function(input, output, session){
     dplyr::mutate(z_score = standard_mutate(playerBestOvr)) %>% 
     dplyr::group_by(position) %>% 
     dplyr::mutate(replacement = quantile(z_score, probs = .05)) %>% 
+    dplyr::ungroup() %>% 
     dplyr::mutate(zsar = z_score - replacement) %>% 
     dplyr::mutate(salary_per_year = contractSalary/contractLength) %>% 
-    dplyr::ungroup() %>% 
     dplyr::left_join(df_adj %>%dplyr::select(term, adjustment), by = c("position"  = "term")) %>% 
     dplyr::mutate(zsar_adj = zsar *adjustment) %>% 
     dplyr::mutate(annual_value = round((total_salary/sum(zsar_adj, na.rm = T))*zsar_adj),0) %>% 
@@ -357,8 +357,8 @@ mod_draft_board_server <- function(input, output, session){
       dplyr::mutate(z_score = standard_mutate(value)) %>% 
       dplyr::group_by(position) %>% 
       dplyr::mutate(replacement = quantile(z_score, probs = .10)) %>% 
-      dplyr::mutate(zsar = z_score - replacement) %>% 
       dplyr::ungroup() %>% 
+      dplyr::mutate(zsar = z_score - replacement) %>% 
       dplyr::left_join(df_adj %>%dplyr::select(term, adjustment), by = c("position"  = "term")) %>% 
       dplyr::mutate(zsar_adj = zsar *adjustment) %>% 
       dplyr::mutate(annual_value_pick = round((total_salary/sum(zsar_adj, na.rm = T))*zsar_adj),0) %>% 
