@@ -21,7 +21,7 @@ mod_draft_board_ui <- function(id){
 mod_draft_board_server <- function(input, output, session){
   ns <- session$ns
   output$drafttable <- DT::renderDataTable({
-    DT::datatable(draft_data)
+    DT::datatable(draft_data %>% dplyr::select(firstName, lastName))
   })
 }
     
