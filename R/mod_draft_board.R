@@ -11,6 +11,10 @@ mod_draft_board_ui <- function(id){
   ns <- NS(id)
   tagList(
     column(3,
+           submitButton("Update View", icon("refresh")),
+           helpText("When you click the button above, you should see",
+                    "the output below update to reflect the value you",
+                    "entered at the top:"),
            selectInput(inputId = ns("attributes_target_QB"),
                        label = "QB Desired Attributes:",
                        choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
