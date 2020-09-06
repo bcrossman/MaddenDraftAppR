@@ -10,16 +10,9 @@
 mod_draft_board_ui <- function(id){
   ns <- NS(id)
   tagList(
-    tags$head(
-      tags$style(HTML(".sidebar {
-                      height: 90vh; overflow-y: auto;
-                    }"
-      ) # close HTML       
-      )            # close tags$style
-    ),  
     fluidPage(
       sidebarLayout(
-        sidebarPanel = sidebarPanel(width = 3,
+        sidebarPanel = sidebarPanel(width = 2,style="overflow-y:scroll; max-height: 800px; position:relative;",
           submitButton("Update View", icon("refresh")),
           selectInput(inputId = ns("attributes_target_QB"),
                       label = "QB Desired Attributes:",
