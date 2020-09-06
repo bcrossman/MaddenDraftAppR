@@ -257,7 +257,7 @@ mod_draft_board_server <- function(input, output, session){
     dplyr::select(-draftPick, -draftRound)
   
   
-  output$drafttable <- DT::renderDataTable({
+  player_data_value_final <- reactive({
     WR_chose_attr <-    input$attributes_target_WR
     QB_chose_attr <-    input$attributes_target_QB
     C_chose_attr <-     input$attributes_target_C
@@ -381,7 +381,11 @@ mod_draft_board_server <- function(input, output, session){
       dplyr::mutate(actual_value_pos = rank(dplyr::desc(total_value_contract_pick))) %>% 
       dplyr::mutate(value_pick = -(actual_value_pos-expect_draft_pos))
     
-    DT::datatable(player_data_value_final, extensions = c('Buttons','FixedColumns'),
+    return(player_data_value_final)
+  })
+    
+output$drafttable <- DT::renderDataTable({
+  DT::datatable(player_data_value_final(), extensions = c('Buttons','FixedColumns'),
                   filter = "top",
                   options = list(
                     scrollX = TRUE,
