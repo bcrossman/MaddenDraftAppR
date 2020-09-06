@@ -204,7 +204,7 @@ mod_draft_board_ui <- function(id){
           tabsetPanel(
             tabPanel(title = "Individual Draft",
                      DT::DTOutput(ns("drafttable"))
-                     ),
+            ),
             tabPanel(title = "Team Draft", DT::DTOutput(ns("drafttableteam")))
           )
         )
@@ -416,7 +416,7 @@ mod_draft_board_server <- function(input, output, session){
       tidyr::spread(key = position, value = value, fill = -1000000) %>%
       dplyr::mutate(Total = C+ CB+ DT+ FS+ HB+ K+ LE+ LG+ LOLB+ LT+ MLB+ P+ QB+ RE+ RG+ ROLB+ RT+ SS+ TE+ WR) %>%
       dplyr::arrange(dplyr::desc(Total))
-      
+    
     DT::datatable(draft_team, 
                   extensions = c('Buttons','FixedColumns'),
                   filter = "top",
@@ -432,7 +432,22 @@ mod_draft_board_server <- function(input, output, session){
                            text = 'DOWNLOAD DATA')
                     )
                   )
-    ) 
+    )%>%
+      DT::formatStyle(columns = 2:(ncol(draft_team)-1),
+                      background = DT::styleColorBar(
+                        range(draft_team[,2:(ncol(draft_team)-1)]), 
+                        'lightblue'),
+                      backgroundSize = '98% 88%',
+                      backgroundRepeat = 'no-repeat',
+                      backgroundPosition = 'center') %>% 
+      DT::formatStyle(columns = ncol(draft_team),
+                      background = DT::styleColorBar(
+                        range(draft_team[,ncol(draft_team)]), 
+                        'lightblue'),
+                      backgroundSize = '98% 88%',
+                      backgroundRepeat = 'no-repeat',
+                      backgroundPosition = 'center') %>% 
+      DT::formatCurrency(columns = 2:ncol(draft_team), digits = 0)  
   })
 }
 
