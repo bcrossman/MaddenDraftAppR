@@ -12,7 +12,7 @@ app_ui <- function(request) {
     shinydashboardPlus::dashboardPagePlus(
       enable_preloader = T, 
       header = shinydashboardPlus::dashboardHeaderPlus(
-        title = "Madden Analysis",
+        title = "Madden Complete Analysis",
         enable_rightsidebar = FALSE
       ),
       
