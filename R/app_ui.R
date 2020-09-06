@@ -8,10 +8,27 @@ app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    # List the first level UI elements here 
-    fluidPage(
-      h1("MaddenDraftAppR"),
-      mod_draft_board_ui("draft_board_ui_1")
+    # List the first level UI elements here
+    shinydashboardPlus::dashboardPagePlus(
+      header = shinydashboardPlus::dashboardHeaderPlus(
+        title = "Madden Analysis",
+        enable_rightsidebar = FALSE
+      ),
+      
+      sidebar = shinydashboard::dashboardSidebar(
+        shinydashboard::sidebarMenu(
+          id = "tabs",
+          shinydashboard::menuItem("Individual Draft", icon = icon("th"), tabName = "indraft")
+        )
+      ),
+      
+      body = shinydashboard::dashboardBody(
+        shinydashboard::tabItems(
+          shinydashboard::tabItem("indraft", mod_draft_board_ui("draft_board_ui_1"))
+          )
+      ),
+      rightsidebar = NULL,
+      title = "Madden Fantasy Draft Board"
     )
   )
 }

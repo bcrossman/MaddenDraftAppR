@@ -10,200 +10,206 @@
 mod_draft_board_ui <- function(id){
   ns <- NS(id)
   tagList(
-    column(3,
-           submitButton("Update View", icon("refresh")),
-           helpText("When you click the button above, you should see",
-                    "the output below update to reflect the value you",
-                    "entered at the top:"),
-           selectInput(inputId = ns("attributes_target_QB"),
-                       label = "QB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       # selected = c("playerBestOvr", "youth", "devTrait", "throwAccDeepRating", 
-                       #              "throwAccMidRating", "throwAccRating", 
-                       #              "throwAccShortRating", "throwPowerRating", 
-                       #              "throwUnderPressureRating", "tightSpiralTrait"),
-                       selected = c("playerBestOvr", "youth", "devTrait", "throwAccDeepRating", 
-                                    "throwOnRunRating","throwPowerRating", "playActionRating",
-                                    "throwUnderPressureRating", "tightSpiralTrait"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_WR"),
-                       label = "WR Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "speedRating", 
-                                    "accelRating", "releaseRating", "catchRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_TE"),
-                       label = "TE Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "catchRating", 
-                                    "passBlockRating", "awareRating", "playRecRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_HB"),
-                       label = "HB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "catchRating", 
-                                    "passBlockRating", "awareRating", "playRecRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_FB"),
-                       label = "FB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_LE"),
-                       label = "LE Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
-                                    "awareRating", "playRecRating", 
-                                    "tackleRating", "pursuitRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_RE"),
-                       label = "RE Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
-                                    "awareRating", "playRecRating", 
-                                    "tackleRating", "pursuitRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_DT"),
-                       label = "DT Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
-                                    "awareRating", "playRecRating", 
-                                    "tackleRating", "pursuitRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_C"),
-                       label = "C Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
-                                    "playRecRating", "passBlockRating",
-                                    "passBlockFinesseRating", "passBlockPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_RG"),
-                       label = "RG Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
-                                    "playRecRating", "passBlockRating",
-                                    "passBlockFinesseRating", "passBlockPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_LG"),
-                       label = "LG Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
-                                    "playRecRating", "passBlockRating",
-                                    "passBlockFinesseRating", "passBlockPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_RT"),
-                       label = "RT Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
-                                    "playRecRating", "passBlockRating",
-                                    "passBlockFinesseRating", "passBlockPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_LT"),
-                       label = "LT Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
-                                    "playRecRating", "passBlockRating",
-                                    "passBlockFinesseRating", "passBlockPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_LOLB"),
-                       label = "LOLB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
-                                    "speedRating", "accelRating",
-                                    "tackleRating", "pursuitRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_ROLB"),
-                       label = "ROLB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", 
-                                    "playRecRating", "speedRating", "accelRating", 
-                                    "tackleRating", "pursuitRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_MLB"),
-                       label = "MLB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
-                                    "speedRating", "accelRating", 
-                                    "tackleRating", "pursuitRating", "zoneCoverRating", "changeOfDirectionRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_CB"),
-                       label = "CB Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
-                                    "speedRating", "accelRating", "agility",
-                                    "manCoverRating", "catchRating", "playBallTrait"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_SS"),
-                       label = "SS Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
-                                    "speedRating", "accelRating", 
-                                    "tackleRating", "pursuitRating", "zoneCoverRating", 
-                                    "catchRating", "playBallTrait", "changeOfDirectionRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_FS"),
-                       label = "FS Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
-                                    "speedRating", "accelRating", 
-                                    "tackleRating", "pursuitRating", "zoneCoverRating", "catchRating", "playBallTrait",
-                                    "changeOfDirectionRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_P"),
-                       label = "P Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "kickAccRating", "kickPowerRating"),
-                       multiple = TRUE
-           ),
-           
-           selectInput(inputId = ns("attributes_target_K"),
-                       label = "K Desired Attributes:",
-                       choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
-                       selected = c("playerBestOvr", "kickAccRating", "kickPowerRating"),
-                       multiple = TRUE
-           ),
-    ),
-    column(9,
-           DT::DTOutput(ns("drafttable"))
-           
+    shinydashboardPlus::dashboardPagePlus(
+      collapse_sidebar = T,enable_preloader = T,
+      
+      header = shinydashboardPlus::dashboardHeaderPlus(
+        title = "Madden Fantasy Draft Board",
+        enable_rightsidebar = FALSE
+      ),
+      sidebar = shinydashboard::dashboardSidebar(
+        submitButton("Update View", icon("refresh")),
+        selectInput(inputId = ns("attributes_target_QB"),
+                    label = "QB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    # selected = c("playerBestOvr", "youth", "devTrait", "throwAccDeepRating", 
+                    #              "throwAccMidRating", "throwAccRating", 
+                    #              "throwAccShortRating", "throwPowerRating", 
+                    #              "throwUnderPressureRating", "tightSpiralTrait"),
+                    selected = c("playerBestOvr", "youth", "devTrait", "throwAccDeepRating", 
+                                 "throwOnRunRating","throwPowerRating", "playActionRating",
+                                 "throwUnderPressureRating", "tightSpiralTrait"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_WR"),
+                    label = "WR Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "speedRating", 
+                                 "accelRating", "releaseRating", "catchRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_TE"),
+                    label = "TE Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "catchRating", 
+                                 "passBlockRating", "awareRating", "playRecRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_HB"),
+                    label = "HB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "catchRating", 
+                                 "passBlockRating", "awareRating", "playRecRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_FB"),
+                    label = "FB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_LE"),
+                    label = "LE Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
+                                 "awareRating", "playRecRating", 
+                                 "tackleRating", "pursuitRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_RE"),
+                    label = "RE Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
+                                 "awareRating", "playRecRating", 
+                                 "tackleRating", "pursuitRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_DT"),
+                    label = "DT Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "blockShedRating", 
+                                 "awareRating", "playRecRating", 
+                                 "tackleRating", "pursuitRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_C"),
+                    label = "C Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
+                                 "playRecRating", "passBlockRating",
+                                 "passBlockFinesseRating", "passBlockPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_RG"),
+                    label = "RG Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
+                                 "playRecRating", "passBlockRating",
+                                 "passBlockFinesseRating", "passBlockPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_LG"),
+                    label = "LG Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
+                                 "playRecRating", "passBlockRating",
+                                 "passBlockFinesseRating", "passBlockPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_RT"),
+                    label = "RT Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
+                                 "playRecRating", "passBlockRating",
+                                 "passBlockFinesseRating", "passBlockPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_LT"),
+                    label = "LT Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait",  "awareRating", 
+                                 "playRecRating", "passBlockRating",
+                                 "passBlockFinesseRating", "passBlockPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_LOLB"),
+                    label = "LOLB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
+                                 "speedRating", "accelRating",
+                                 "tackleRating", "pursuitRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_ROLB"),
+                    label = "ROLB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", 
+                                 "playRecRating", "speedRating", "accelRating", 
+                                 "tackleRating", "pursuitRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_MLB"),
+                    label = "MLB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
+                                 "speedRating", "accelRating", 
+                                 "tackleRating", "pursuitRating", "zoneCoverRating", "changeOfDirectionRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_CB"),
+                    label = "CB Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
+                                 "speedRating", "accelRating", "agility",
+                                 "manCoverRating", "catchRating", "playBallTrait"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_SS"),
+                    label = "SS Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
+                                 "speedRating", "accelRating", 
+                                 "tackleRating", "pursuitRating", "zoneCoverRating", 
+                                 "catchRating", "playBallTrait", "changeOfDirectionRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_FS"),
+                    label = "FS Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "youth", "devTrait", "awareRating", "playRecRating", 
+                                 "speedRating", "accelRating", 
+                                 "tackleRating", "pursuitRating", "zoneCoverRating", "catchRating", "playBallTrait",
+                                 "changeOfDirectionRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_P"),
+                    label = "P Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "kickAccRating", "kickPowerRating"),
+                    multiple = TRUE
+        ),
+        
+        selectInput(inputId = ns("attributes_target_K"),
+                    label = "K Desired Attributes:",
+                    choices = names(draft_data %>% dplyr::select(-teamId,-firstName, -team,  -lastName,-position)),
+                    selected = c("playerBestOvr", "kickAccRating", "kickPowerRating"),
+                    multiple = TRUE
+        )
+      ),
+      body = shinydashboard::dashboardBody(
+        fluidRow(
+          DT::DTOutput(ns("drafttable"))
+        )
+      )
     )
   )
 }
@@ -235,10 +241,10 @@ mod_draft_board_server <- function(input, output, session){
     dplyr::mutate(zsar_adj = zsar *adjustment) %>% 
     dplyr::mutate(annual_value = round((total_salary/sum(zsar_adj, na.rm = T))*zsar_adj),0) %>% 
     dplyr::mutate(annual_excess_value = annual_value - salary_per_year) %>% 
-   dplyr::select(id, team, firstName, lastName, position, age, playerBestOvr, devTrait, 
-           z_score, replacement, zsar, adjustment, zsar_adj,
-           salary_per_year, contractYearsLeft,
-           annual_value, annual_excess_value) %>% 
+    dplyr::select(id, team, firstName, lastName, position, age, playerBestOvr, devTrait, 
+                  z_score, replacement, zsar, adjustment, zsar_adj,
+                  salary_per_year, contractYearsLeft,
+                  annual_value, annual_excess_value) %>% 
     dplyr::mutate(adj_contract_years_left = pmin(pmax(29-age,1), contractYearsLeft)) %>% 
     dplyr::mutate(total_value_contract = adj_contract_years_left * annual_excess_value) %>% 
     dplyr::arrange(dplyr::desc(total_value_contract))
@@ -247,10 +253,10 @@ mod_draft_board_server <- function(input, output, session){
   draft_position <- 
     draft_data %>% 
     dplyr::filter(draftRound<56) %>%
-   dplyr::select(id, draftPick, draftRound) %>% 
+    dplyr::select(id, draftPick, draftRound) %>% 
     dplyr::mutate(expect_draft_pos = (draftRound-2)*32+(draftPick - 1),
-           id = as.character(id)) %>% 
-   dplyr::select(-draftPick, -draftRound)
+                  id = as.character(id)) %>% 
+    dplyr::select(-draftPick, -draftRound)
   
   
   output$drafttable <- DT::renderDataTable({
@@ -328,7 +334,7 @@ mod_draft_board_server <- function(input, output, session){
     
     df_attr <- 
       df_attr %>% 
-     dplyr::select(-key) %>% 
+      dplyr::select(-key) %>% 
       dplyr::rename(key = .id)
     
     df_attr <- df_attr %>% dplyr::mutate(key = gsub(pattern = "_chose_attr",replacement = "", x = .[["key"]]))
@@ -338,7 +344,7 @@ mod_draft_board_server <- function(input, output, session){
     df_attr <- 
       df_attr %>%
       dplyr::rename(position = key,
-             attribute = value)
+                    attribute = value)
     
     df_initial <- 
       player_data_slim_1 %>% 
@@ -366,12 +372,12 @@ mod_draft_board_server <- function(input, output, session){
       dplyr::left_join(df_adj %>%dplyr::select(term, adjustment), by = c("position"  = "term")) %>% 
       dplyr::mutate(zsar_adj = zsar *adjustment) %>% 
       dplyr::mutate(annual_value_pick = round((total_salary/sum(zsar_adj, na.rm = T))*zsar_adj),0) %>% 
-     dplyr::select(id:position, annual_value_pick)
+      dplyr::select(id:position, annual_value_pick)
     
     player_data_value_final <- 
       player_data_value %>% dplyr::left_join(player_data_value_2) %>% 
       dplyr::mutate(annual_excess_value_pick = round(annual_value_pick - salary_per_year,0), 
-             total_value_contract_pick = adj_contract_years_left * annual_excess_value_pick) %>% 
+                    total_value_contract_pick = adj_contract_years_left * annual_excess_value_pick) %>% 
       dplyr::arrange(dplyr::desc(total_value_contract_pick)) %>% 
       dplyr::left_join(draft_position) %>% 
       dplyr::mutate(actual_value_pos = rank(dplyr::desc(total_value_contract_pick))) %>% 
