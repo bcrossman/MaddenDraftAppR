@@ -201,8 +201,10 @@ mod_draft_board_ui <- function(id){
           )
         ),
         mainPanel = mainPanel(
-          fluidRow(
-            DT::DTOutput(ns("drafttable"))
+          tabsetPanel(
+            tabPanel(title = "Individual Draft",
+            DT::DTOutput(ns("drafttable"))),
+            tabPanel(h2("empty"), title = "Team Draft")
           )
         )
       )
