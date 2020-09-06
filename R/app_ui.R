@@ -10,6 +10,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here
     shinydashboardPlus::dashboardPagePlus(
+      enable_preloader = T, 
       header = shinydashboardPlus::dashboardHeaderPlus(
         title = "Madden Analysis",
         enable_rightsidebar = FALSE

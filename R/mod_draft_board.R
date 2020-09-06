@@ -10,8 +10,16 @@
 mod_draft_board_ui <- function(id){
   ns <- NS(id)
   tagList(
+    tags$head(
+      tags$style(HTML(".sidebar {
+                      height: 90vh; overflow-y: auto;
+                    }"
+      ) # close HTML       
+      )            # close tags$style
+    ),  
     shinydashboardPlus::dashboardPagePlus(
-      collapse_sidebar = T,enable_preloader = T,
+      sidebar_background = "light",        
+      collapse_sidebar = T,
       
       header = shinydashboardPlus::dashboardHeaderPlus(
         title = "Madden Fantasy Draft Board",
